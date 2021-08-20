@@ -23,7 +23,22 @@ wait.until(EC.element_to_be_clickable((By.ID, "passwordEmail"))).send_keys(PW)
 driver.find_element_by_xpath("//button[@type='submit']").click()
 driver.switch_to.default_content()
 
-# driver.find_element_by_xpath("//tbody/tr[3]/td[9]/a[1]/i[1]").click()
+try:
+    n = 0
+    for i in range(2, 23):
+        n = i
+        report = driver.find_element_by_xpath(f"//tbody/tr[{n}]/td[9]/a[1]/i[1].")
+        print(n)
+        if report:
+
+            report.click()
+            time.sleep(3)
+        elif n == 22:
+            next_page = driver.find_element_by_link_text("2")
+            next_page.click()
+except:
+    driver.quit()
+
 
 # close browser after 5 second delay
 # time.sleep(5)
